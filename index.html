@@ -10,6 +10,13 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PS23VBXFQX"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-PS23VBXFQX');
+        </script>
 
     </head>
     <body>
@@ -127,8 +134,8 @@
                 },
                 phone: {
                   required: true,
-                  minlength:10,
-                  maxlength:10
+                  minlength:6,
+                  maxlength:15
                 },
                 price: "required",
                 comments: {
