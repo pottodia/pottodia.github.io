@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-PS23VBXFQX"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -88,7 +90,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <input type="text" name="phone" class="form-control" placeholder="Phone number (Required)" required>
+                                                    <input type="tel" id="phone" name="phone" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,6 +149,7 @@
                 phone: {
                   required: 'You can not leave this empty.',
                   matches: 'Please enter a valide phone number.',
+                  pattern: "^\\+?\\d{6,15}$",
                   minlength: 'Phone number should be min 10 digits.',
                   maxlength: 'Phone number should be max 10 digits.'
                 },
@@ -165,7 +168,15 @@
             
                 // 获取表单数据
                 var formData = new FormData(this);
-            
+                var phoneInput = document.getElementById("phone").value;
+                var phonePattern = /^(\+\d{1,3}[- ]?)?\d{6,15}$/;
+
+                if (!phonePattern.test(phoneInput)) {
+                    alert("Please enter a valid phone number.");
+                    event.preventDefault(); // 阻止提交
+                    return; // 不继续执行提交逻辑
+                }
+                
                 // 将数据发送到 Formspree
                 fetch("https://formspree.io/f/xanwjere", {
                     method: "POST",
@@ -185,5 +196,26 @@
                 });
             });
           </script>
+          <script>
+            var input = document.querySelector("#phone");
+            var iti = window.intlTelInput(input, {
+                initialCountry: "auto",
+                geoIpLookup: function(success, failure) {
+                    fetch("https://ipinfo.io?token=<YOUR_IPINFO_TOKEN>")
+                        .then(response => response.json())
+                        .then(data => success(data.country))
+                        .catch(() => success("US"));
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+        
+            // 提交表单前获取完整的国际电话号码
+            document.getElementById("main-offer-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                var fullPhoneNumber = iti.getNumber();
+                input.value = fullPhoneNumber; // 用国际格式替换原始输入
+                // 继续表单提交
+            });
+        </script>
     </body>
 </html>
