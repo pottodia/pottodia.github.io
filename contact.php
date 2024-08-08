@@ -3,7 +3,7 @@
 	if (isset($_POST['email'])) {
 
 		// EDIT THE 2 LINES BELOW AS REQUIRED
-		$email_to = "mail@ai.top";
+		$email_to = "contact@ai.top";
 		$email_subject = "My offer for ai.top";
 
 
@@ -62,7 +62,7 @@
 											</div>
 											<div class="col-sm-4">
 												<p><em class="ion-ios-chatbubble-outline icon-md"></em></p>
-												<p class="lead"><a href="mailto:mail@ai.top">mail@ai.top</a></p>
+												<p class="lead"><a href="mailto:contact@ai.top">contact@ai.top</a></p>
 											</div>
 									</div>
 								</div>
