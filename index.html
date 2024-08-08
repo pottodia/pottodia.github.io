@@ -74,59 +74,34 @@
                         <section class="bg-alt">
                             <div class="container">
                                 <div class="row height-100">
-                                    <div class="col-sm-10 offset-sm-1 mt-2">
-                                      <form id="main-offer-form" action="https://formspree.io/f/xanwjere" method="POST">
-                                        <h2 class="text-primary">Interested in this domain?</h2>
-                                        <hr/>
+                                    <div class="col-sm-10 offset-sm-1 mt-2">                         
+                                      <form id="main-offer-form" method="POST" action="https://formspree.io/f/xanwjere">
+                                        <!-- 表单字段 -->
                                         <div class="form-group">
-                                            <input
-                                              type="text"
-                                              name="name"
-                                              id="name"
-                                              class="form-control"
-                                              placeholder="Full name (Required)"
-                                              required
-                                            >
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="Full name (Required)" required>
                                         </div>
                                         <div class="row">
-                                          <div class="col">
-                                            <div class="form-group">
-                                                <input
-                                                  type="email"
-                                                  name="email"
-                                                  class="form-control"
-                                                  placeholder="Email (Required)"
-                                                  required
-                                                >
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" class="form-control" placeholder="Email (Required)" required>
+                                                </div>
                                             </div>
-                                          </div>
-                                          <div class="col">
-                                            <div class="form-group">
-                                                <input
-                                                  type="text"
-                                                  name="phone"
-                                                  class="form-control"
-                                                  placeholder="Phone number (Required)"
-                                                  required
-                                                >
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" name="phone" class="form-control" placeholder="Phone number (Required)" required>
+                                                </div>
                                             </div>
-                                          </div>
                                         </div>
                                         <div class="form-group">
-                                            <input
-                                              type="number"
-                                              name="price"
-                                              class="form-control"
-                                              min="0"
-                                              placeholder="Offer price in USD? (Required)"
-                                              required
-                                            >
+                                            <input type="number" name="price" class="form-control" min="0" placeholder="Offer price in USD? (Required)" required>
                                         </div>
                                         <div class="form-group">
-                                            <textarea name="comments" class="form-control" placeholder="Message (optional)" maxlength="500"></textarea>
+                                            <textarea name="comments" class="form-control" placeholder="Message (optional)"></textarea>
                                         </div>
                                         <button type="submit" class="btn text-white btn-lg bg-primary btn-block">Make an offer</button>
-                                      </form>
+                                    </form>
+
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -184,5 +159,31 @@
               }
           });
         </script>
+        <script>
+            document.getElementById("main-offer-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // 阻止默认表单提交
+            
+                // 获取表单数据
+                var formData = new FormData(this);
+            
+                // 将数据发送到 Formspree
+                fetch("https://formspree.io/f/xanwjere", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }).then(function(response) {
+                    if (response.ok) {
+                        // 如果提交成功，跳转到 success.html
+                        window.location.href = "success.html";
+                    } else {
+                        alert("There was an error with your submission. Please try again.");
+                    }
+                }).catch(function(error) {
+                    alert("There was a network error. Please try again.");
+                });
+            });
+          </script>
     </body>
 </html>
