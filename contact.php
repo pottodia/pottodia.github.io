@@ -13,7 +13,7 @@
 		$price = $_POST['price']; // not required
 		$comments = $_POST['comments']; // required
 
-
+		
 		$email_message = "Form details below.\n\n";
 
 		function clean_string($string) {
@@ -38,7 +38,7 @@
 <html lang="en">
 		<head>
 				<meta charset="utf-8">
-				<title>Sales Inquery || [Your Domain]</title>
+				<title>Domain For Sale || ai.top</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -58,7 +58,7 @@
 										<div class="row d-md-flex text-center justify-content-center text-primary action-icons">
 											<div class="col-sm-4">
 												<p><em class="ion-ios-telephone-outline icon-md"></em></p>
-												<p class="lead"><a href="tel:+[Your Phone]">+[Your Phone]</a></p>
+												<p class="lead"><a href="tel:+[Your Phone]">+[...]</a></p>
 											</div>
 											<div class="col-sm-4">
 												<p><em class="ion-ios-chatbubble-outline icon-md"></em></p>
